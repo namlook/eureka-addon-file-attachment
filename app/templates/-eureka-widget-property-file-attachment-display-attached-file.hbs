@@ -1,0 +1,19 @@
+<div class="media">
+    <div class="media-left media-middle">
+    <a {{bind-attr href=file.url}} target="_blank">
+        <img class="media-object" width="64px" height="64px" {{bind-attr src=file.thumb}} />
+    </a>
+    </div>
+    <div class="media-body">
+        <div class="btn-group pull-right" role="group">
+            <a {{bind-attr href=file.url}}  target="_blank" class="btn btn-default btn">
+                <i class="glyphicon glyphicon-save"></i>
+            </a>
+            {{#link-to file.meta.modelIndexViewPath file._id class="btn btn-default btn"}}
+                <i class="glyphicon glyphicon-info-sign"></i>
+            {{/link-to}}
+        </div>
+        <h4 class="media-heading">{{file.title}}</h4>
+        <p><small>{{file.type}} ({{file.size}})</small></p>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+
+.eureka-widget-property-file-attachment-display {
+    padding-top: 10px;
+}
+
+.eureka-widget-property-file-attachment-form {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.eureka-widget-property-multi-file-attachment-form  .eureka-widget-property-file-attachment-attached-files .media{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.eureka-widget-property-file-attachment-display {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.eureka-widget-property-file-attachment-autosuggest {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.dropzone {
+    border: 0;
+    padding: 30px;
+    min-height: 0;
+}
+
+.dropzone .dz-message, .dropzone .dz-message p {
+    margin: 0;
+}
+
+.dropzone .dz-preview.dz-file-preview .dz-image,
+.dropzone .dz-preview .dz-image {
+    border-radius: 0;
+}

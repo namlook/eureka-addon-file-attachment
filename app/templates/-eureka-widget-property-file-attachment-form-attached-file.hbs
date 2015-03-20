@@ -1,0 +1,23 @@
+<div class="media">
+    <div class="media-left media-middle">
+    <a {{bind-attr href=file.url}} target="_blank">
+        <img class="media-object" width="64px" height="64px" {{bind-attr src=file.thumb}} />
+    </a>
+    </div>
+    <div class="media-body">
+        {{#if file._ui.editing}}
+            {{widget-model-form routeModel=file config=fileFormWidgetConfig isEmbedded=true}}
+            <div class="btn-group" role="group">
+                <button class="btn btn-default" {{action 'cancel' file}}> cancel </button>
+                <button class="btn btn-success" {{action 'save' file}}>save</button>
+            </div>
+        {{else}}
+            <h4 class="media-heading"> {{file.title}} </h4>
+            <div class="btn-group pull-right" role="group">
+                <button class="btn btn-default btn-sm" {{action 'edit' file}}><i class="glyphicon glyphicon-pencil"></i></button>
+                <button class="btn btn-danger btn-sm" {{action 'remove' file}}><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+            <p>{{file.description}}</p>
+        {{/if}}
+    </div>
+</div>

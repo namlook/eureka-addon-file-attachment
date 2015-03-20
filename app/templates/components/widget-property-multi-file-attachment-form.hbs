@@ -1,0 +1,13 @@
+<div class="eureka-widget-property-file-attachment-attached-files">
+    {{#each file in field.values}}
+        {{partial 'eureka-widget-property-file-attachment-form-attached-file'}}
+    {{/each}}
+</div>
+
+{{#if autosuggestEnabled}}
+    <div class="eureka-widget-property-file-attachment-autosuggest">
+        {{relation-autosuggest field=field}}
+    </div>
+{{/if}}
+
+{{partial 'eureka-widget-property-file-attachment-dropzone'}}
