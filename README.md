@@ -1,6 +1,43 @@
-# Ember-dropzone
+# Eureka-addon-file-attachment
 
-This README outlines the details of collaborating on this Ember addon.
+An Eureka addon that provides file attachment support.
+
+This addon provides:
+
+ - the `file` resource
+ - the model : `File`
+ - the property widget: `file-attachment`
+ - the model widgets: `model-file-edit` and `model-file-new`
+
+
+## Usage:
+
+    {
+        Email: {
+            properties: {
+                title: {
+                    type: 'string'
+                },
+                body: {
+                    type: 'string'
+                },
+                attachments: {
+                    type: 'string',
+
+                    // multi for multiple attachment
+                    multi: true,
+
+                    widget: {
+                        type: 'file-attachment',
+
+                        // if true, allow to search an already saved file
+                        // in order to attach it
+                        autosuggest: false
+                    }
+                }
+            }
+        }
+    }
 
 ## Installation
 

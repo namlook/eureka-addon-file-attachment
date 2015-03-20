@@ -1,7 +1,7 @@
 {
-  "name": "ember-dropzone",
+  "name": "eureka-addon-file-attachment",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "An Eureka addon that provides file attachment support.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -35,7 +35,8 @@
     "glob": "^4.0.5"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "eureka-addon"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
