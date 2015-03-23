@@ -8,9 +8,11 @@
 
 <div {{bind-attr class="field.value:hidden"}}>
     {{#if autosuggestEnabled}}
-        <div class="eureka-widget-property-file-attachment-autosuggest">
-            {{relation-autosuggest field=field}}
-        </div>
+        {{#unless _dropzoneQueue.length}}
+            <div class="eureka-widget-property-file-attachment-autosuggest">
+                {{relation-autosuggest field=field}}
+            </div>
+        {{/unless}}
     {{/if}}
 
     {{partial 'eureka-widget-property-file-attachment-dropzone'}}

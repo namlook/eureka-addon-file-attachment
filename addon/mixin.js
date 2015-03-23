@@ -6,24 +6,49 @@ export default Ember.Mixin.create({
     maxFilesize: 250, // in MB
     maxFiles: 20,
     autoProcessQueue: false,
+
     _dropzone: null,
 
+    _dropzoneQueue: function() {
+        return Ember.A();
+    }.property(),
+
+
+    /** the url api endpoint to upload files (/api/1/<resource>)
+     */
     url: function() {
-        return this.get('store.resourceEndpoint') + '/files';
-    }.property('store.resourceEndpoint'),
+        var dasherizedResource = this.get('model.meta.resource').dasherize();
+        return this.get('store.db.endpoint')+'/_files/'+dasherizedResource;
+    }.property('store.db.endpoint'),
+
 
     /** fired when the file model has been created.
      * take the file model in parameter
      */
     onfileUploaded: Ember.required,
 
+    dropzoneRemovedFile: function() {
+        var that = this;
+        return function(file) {
+            that.get('_dropzoneQueue').removeObject(file);
+
+            // TODO emberize this mixin
+            if (file.previewElement && file.previewElement.parentNode) {
+                file.previewElement.parentNode.removeChild(file.previewElement);
+            }
+            this._updateMaxFilesReachedClass();
+        };
+    },
+
 
     /** returns the dropzone's accept function **/
     dropzoneAccept: function() {
         var model = this.get('model');
+        var that = this;
         return function(file, done) {
             // 'this' represent the dropzone context here
             done();
+            that.get('_dropzoneQueue').pushObject(file);
             var dzContext = this;
             var scheduledFn = function() {
                 return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -73,7 +98,7 @@ export default Ember.Mixin.create({
     },
 
     _insertDropzone: function() {
-        var dropozone = new Dropzone(this.$('.dropzone')[0], {
+        var dropzone = new Dropzone(this.$('.dropzone')[0], {
             url: this.get('url'),
             autoProcessQueue: this.get('autoProcessQueue'),
             maxFiles: this.get('maxFiles'),
@@ -84,12 +109,13 @@ export default Ember.Mixin.create({
         //       acceptedFiles: this.get('acceptedMimeTypes'),
             success: this.dropzoneSuccess(),
             accept: this.dropzoneAccept(),
-            maxfilesexceeded: function(file, bla, foo) {
-                // this.removeFile(file);
-                console.log('maxfilesexceeded>>>', file, bla, foo);
-            }
+            removedfile: this.dropzoneRemovedFile(),
+            // maxfilesexceeded: function(file, bla, foo) {
+            //     // this.removeFile(file);
+            //     console.log('maxfilesexceeded>>>', file, bla, foo);
+            // }
         });
-        this.set('_dropzone', dropozone);
+        this.set('_dropzone', dropzone);
 
     }.on('didInsertElement'),
 
