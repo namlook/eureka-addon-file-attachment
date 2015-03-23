@@ -6,20 +6,15 @@ export default Model.extend({
         return this.get('type').search(/^image/) > -1;
     }.property('type'),
 
-    _getFileUrl: function(path) {
-        if (path) {
-            var dasherizedResource = path.split('/')[1];
-            var fileName = path.split('/').slice(2).join('/');
-            var url = this.get('meta.store.db.endpoint')+'/'+dasherizedResource+'/files/'+fileName;
-            return url;
-        }
-    },
+    _filesEndpoint: function() {
+        return this.get('meta.store.db.endpoint')+'/_files';
+    }.property('meta.store.db.endpoint'),
 
     url: function() {
-        return this._getFileUrl(this.get('path'));
-    }.property('path'),
+        return this.get('_filesEndpoint')+this.get('path');
+    }.property('_filesEndpoint', 'path'),
 
     thumb: function() {
-        return this._getFileUrl(this.get('thumbPath'));
-    }.property('thumbPath')
+        return this.get('_filesEndpoint')+this.get('thumbPath');
+    }.property('_filesEndpoint', 'thumbPath')
 });
