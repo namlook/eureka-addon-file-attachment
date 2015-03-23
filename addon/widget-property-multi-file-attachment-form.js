@@ -5,14 +5,6 @@ export default Widget.extend({
 
     maxFiles: 20,
 
-    actions: {
-        remove: function(file) {
-            // TODO file.delete(function(){
-                this.get('field.values').removeObject(file);
-            // });
-        }
-    },
-
     onfileUploaded: function(fileRecord) {
         this.get('field.values').pushObject(fileRecord);
     }

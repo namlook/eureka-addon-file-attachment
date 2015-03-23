@@ -17,14 +17,32 @@ export default WidgetProperty.extend(DropzoneMixin, {
             file.set('_ui.editing', false);
         },
         save: function(file) {
+            if (file.get('isFulfilled')) { // handle promise proxy
+                file = file.get('content');
+            }
+
             file.save().then(function() {
                 file.set('_ui.editing', false);
             });
         },
         remove: function(file) {
-            // TODO file.delete(function(){
-                this.set('field.value', null);
-            // });
+            if (file.get('isFulfilled')) { // handle promise proxy
+                file = file.get('content');
+            }
+
+            var model = this.get('model');
+            var field = this.get('field');
+
+            file.delete().then(function(){
+                if (field.get('meta.isMulti')) {
+                    var obj = field.get('values').findBy('_id', file.get('_id'));
+                    field.get('values').removeObject(obj);
+                } else {
+                    field.set('value', null);
+                }
+            }).then(function() {
+                return model.save();
+            });
         }
     },
 
