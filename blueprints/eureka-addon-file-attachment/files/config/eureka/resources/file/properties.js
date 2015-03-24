@@ -7,10 +7,12 @@ export default {
         type: 'string'
     },
     path: {
-        type: 'string'
+        type: 'string',
+        propagateDeletion: true
     },
     thumbPath: {
-        type: 'string'
+        type: 'string',
+        propagateDeletion: true
     },
     type: {
         type: 'string'
