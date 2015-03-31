@@ -1,7 +1,14 @@
 
 .eureka-widget-property-file-attachment-display {
     padding-top: 10px;
+    text-align: center;
 }
+
+
+.eureka-widget-property-file-attachment-display .img-thumbnail{
+    margin: 5px;
+}
+
 
 .eureka-widget-property-file-attachment-form {
     padding: 10px;

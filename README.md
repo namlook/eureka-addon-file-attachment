@@ -32,7 +32,10 @@ This addon provides:
 
                         // if true, allow to search an already saved file
                         // in order to attach it
-                        autosuggest: false
+                        autosuggest: false,
+
+                        // switch to a detailed view
+                        useDetailedStyle: false
                     }
                 }
             }

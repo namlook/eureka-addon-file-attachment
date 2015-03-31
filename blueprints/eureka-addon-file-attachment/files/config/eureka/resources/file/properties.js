@@ -14,7 +14,7 @@ export default {
         type: 'string',
         propagateDeletion: true
     },
-    type: {
+    mime: {
         type: 'string'
     },
     lastModified: {

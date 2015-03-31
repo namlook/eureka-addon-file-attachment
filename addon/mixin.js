@@ -82,7 +82,7 @@ export default Ember.Mixin.create({
                 size: file.size,
                 path: res.path,
                 thumbPath: res.thumbPath,
-                type: file.type,
+                mime: file.type,
                 lastModified: file.lastModifiedDate
             };
 
