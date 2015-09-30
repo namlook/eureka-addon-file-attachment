@@ -46,9 +46,9 @@ export default WidgetProperty.extend(DropzoneMixin, {
         }
     },
 
-    fileFormWidgetConfig: function() {
+    fileFormWidgetConfig: Ember.computed(function() {
         return {fields: ['title', 'description']};
-    }.property(),
+    }),
 
 
     onfileUploaded: function(fileRecord) {

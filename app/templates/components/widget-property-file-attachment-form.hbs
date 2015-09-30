@@ -6,7 +6,7 @@
     </div>
 {{/if}}
 
-<div {{bind-attr class="field.value:hidden"}}>
+<div class="{{if field.value 'hidden'}}">
     {{#if autosuggestEnabled}}
         {{#unless _dropzoneQueue.length}}
             <div class="eureka-widget-property-file-attachment-autosuggest">
