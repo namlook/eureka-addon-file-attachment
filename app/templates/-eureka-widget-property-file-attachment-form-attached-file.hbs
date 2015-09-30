@@ -1,9 +1,11 @@
 <div class="media">
+    {{#if file.thumb}}
     <div class="media-left media-middle">
-    <a {{bind-attr href=file.url}} target="_blank">
-        <img class="media-object" width="64px" height="64px" {{bind-attr src=file.thumb}} />
-    </a>
+        <a href={{file.url}} target="_blank">
+            <img class="media-object" width="64px" height="64px" src={{file.thumb}} />
+        </a>
     </div>
+    {{/if}}
     <div class="media-body">
         {{#if file._ui.editing}}
             {{widget-model-form routeModel=file config=fileFormWidgetConfig isEmbedded=true}}

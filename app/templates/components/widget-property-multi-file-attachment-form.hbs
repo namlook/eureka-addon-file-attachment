@@ -1,5 +1,5 @@
 <div class="eureka-widget-property-file-attachment-attached-files">
-    {{#each file in field.values}}
+    {{#each field.values as |file|}}
         {{partial 'eureka-widget-property-file-attachment-form-attached-file'}}
     {{/each}}
 </div>

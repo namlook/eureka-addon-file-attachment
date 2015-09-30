@@ -1,9 +1,9 @@
-{{#with field.value as file}}
+{{#with field.value as |file|}}
     {{#if useDetailedStyle}}
         {{partial 'eureka-widget-property-file-attachment-display-attached-file'}}
     {{else}}
-        <a {{bind-attr href=file.url}} target="_blank">
-            <img class="media-object" width="64px" height="64px" {{bind-attr src=file.thumb}} />
+        <a href={{file.url}} target="_blank">
+            <img class="img-thumbnail" src={{file.thumb}} />
         </a>
     {{/if}}
 {{/with}}

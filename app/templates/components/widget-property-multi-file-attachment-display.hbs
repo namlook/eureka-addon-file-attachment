@@ -1,13 +1,13 @@
 {{#if useDetailedStyle}}
-    {{#each file in field.values}}
+    {{#each field.values as |file|}}
         {{partial 'eureka-widget-property-file-attachment-display-attached-file'}}
     {{/each}}
 {{else}}
     <ul class="list-inline">
-    {{#each file in field.values}}
+    {{#each field.values as |file|}}
         <li class="thumb-item">
-            <a {{bind-attr href=file.url}} target="_blank">
-                <img class="img-thumbnail" {{bind-attr src=file.thumb}} />
+            <a href={{file.url}} target="_blank">
+                <img class="img-thumbnail" src={{file.thumb}} />
             </a>
         </li>
     {{/each}}

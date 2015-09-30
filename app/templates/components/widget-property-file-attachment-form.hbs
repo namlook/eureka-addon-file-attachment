@@ -1,6 +1,6 @@
 {{#if field.value}}
     <div class="eureka-widget-property-file-attachment-attached-files">
-        {{#with field.value as file}}
+        {{#with field.value as |file|}}
             {{partial 'eureka-widget-property-file-attachment-form-attached-file'}}
         {{/with}}
     </div>
