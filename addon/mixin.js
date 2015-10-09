@@ -7,11 +7,10 @@ export default Ember.Mixin.create({
     maxFiles: 20,
     autoProcessQueue: false,
 
-    _dropzone: null,
 
-    _dropzoneQueue: function() {
+    _dropzoneQueue: Ember.computed(function() {
         return Ember.A();
-    }.property(),
+    }),
 
 
     /** the url api endpoint to upload files (/api/1/<resource>)
@@ -97,7 +96,7 @@ export default Ember.Mixin.create({
         };
     },
 
-    _insertDropzone: function() {
+    _insertDropzone: Ember.on('didInsertElement', function() {
         var dropzone = new Dropzone(this.$('.dropzone')[0], {
             url: this.get('url'),
             autoProcessQueue: this.get('autoProcessQueue'),
@@ -115,8 +114,8 @@ export default Ember.Mixin.create({
             //     console.log('maxfilesexceeded>>>', file, bla, foo);
             // }
         });
-        this.set('_dropzone', dropzone);
+        this._dropzone = dropzone;
 
-    }.on('didInsertElement'),
+    }),
 
 });
