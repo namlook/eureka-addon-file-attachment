@@ -6,6 +6,7 @@ export default Widget.extend({
     maxFiles: 20,
 
     onfileUploaded: function(fileRecord) {
+        fileRecord.save();
         this.get('field.values').pushObject(fileRecord);
     }
 });

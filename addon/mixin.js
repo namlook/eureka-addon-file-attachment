@@ -12,13 +12,17 @@ export default Ember.Mixin.create({
         return Ember.A();
     }),
 
+    eurekaConfig: Ember.computed(function() {
+        return this.container.lookupFactory('config:environment');
+    }),
 
     /** the url api endpoint to upload files (/api/1/<resource>)
      */
-    url: function() {
-        var dasherizedResource = this.get('model.meta.resource').dasherize();
-        return this.get('store.db.endpoint')+'/_files/'+dasherizedResource;
-    }.property('store.db.endpoint'),
+    url: Ember.computed('store.db.endpoint', 'eurekaConfig.APP.fileUploadEndpoint', function() {
+        let apiEndpoint = this.get('store.db.endpoint');
+        let fileEndpoint = this.get('eurekaConfig.APP.fileUploadEndpoint');
+        return `${apiEndpoint}${fileEndpoint}`;
+    }),
 
 
     /** fired when the file model has been created.
@@ -79,14 +83,16 @@ export default Ember.Mixin.create({
             var record = {
                 title: file.name,
                 size: file.size,
-                path: res.path,
-                thumbPath: res.thumbPath,
+                path: res.filename,
+                // thumbPath: res.thumbPath,
                 mime: file.type,
-                lastModified: file.lastModifiedDate
+                lastModified: file.lastModifiedDate,
             };
 
             var dzContext = this;
-            var fileRecord = that.get('store.db')['File'].createRecord(record);
+            var fileRecord = that.get('store.db').File.createInstance(record);
+            fileRecord.set('_id', res.filename.split('.')[0]); // the id is the file name
+            fileRecord.set('_type', 'File');
             that.onfileUploaded(fileRecord);
 
             dzContext.removeFile(file);
