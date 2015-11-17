@@ -1,6 +1,6 @@
 {
   "name": "eureka-addon-file-attachment",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "An Eureka addon that provides file attachment support.",
   "directories": {
     "doc": "doc",
