@@ -26,7 +26,6 @@ export default WidgetProperty.extend({
 
     isImage: Ember.computed('filepath', function() {
         let filepath = this.get('filepath');
-        console.log('filepath', filepath, mimoza.getMimeType(filepath));
         return mimoza.getMimeType(filepath).search(/^image/) > -1;
     }),
 
