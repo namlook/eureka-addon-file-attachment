@@ -14,6 +14,9 @@ module.exports = {
     app.import(app.bowerDirectory + '/dropzone/dist/dropzone.js');
     app.import(app.bowerDirectory + '/dropzone/dist/basic.css');
     app.import(app.bowerDirectory + '/dropzone/dist/dropzone.css');
+
+    app.import(app.bowerDirectory + '/mimoza/dist/mimoza.js');
+
     app.import('./vendor/addon.css');
   }
 };

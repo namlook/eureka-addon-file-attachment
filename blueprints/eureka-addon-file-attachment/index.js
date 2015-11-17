@@ -4,6 +4,9 @@ module.exports = {
   normalizeEntityName: function() {},
 
   afterInstall: function(options) {
-    return this.addBowerPackageToProject('dropzone', '~4.2.0');
+    return this.addBowerPackagesToProject([
+        {name: 'dropzone', target: '~4.2.0'},
+        {name: 'mimoza', target: '1.0.0'}
+    ]);
   }
 };

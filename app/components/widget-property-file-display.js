@@ -1,0 +1,1 @@
+export { default } from 'eureka-addon-file-attachment/components/widget-property-file-display';
